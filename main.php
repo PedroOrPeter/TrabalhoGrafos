@@ -3,19 +3,19 @@
 require_once 'Grafo.php';
 
 function main() {
-    $tipoGrafo = (int)readline("Escolha o tipo de grafo:\n1 - Direcional nao ponderado\n2 - Nao direcional ponderado\n");
+    $tipoGrafo = (int)readline("1 - Direcional nao ponderado\n2 - Nao direcional ponderado\n");
     $numeroNos = (int)readline("Digite o numero de nos do grafo: ");
 
     $grafo = new Grafo($tipoGrafo == 1, $tipoGrafo == 2, $numeroNos);
 
     while (true) {
-        $origem = (int)readline("Digite o no de origem (0 para sair): ");
+        $origem = (int)readline("no de origem (0 para sair): ");
         if ($origem == 0) break;
 
-        $destino = (int)readline("Digite o no de destino: ");
+        $destino = (int)readline("no de destino: ");
 
         if ($grafo->ponderado) {
-            $peso = (int)readline("Digite o peso da aresta: ");
+            $peso = (int)readline("o peso da aresta: ");
         } else {
             $peso = 1;
         }
@@ -36,22 +36,22 @@ function main() {
     $inicioDijkstra = (int)readline("Digite o nó de início para Dijkstra (1 a $numeroNos): ") - 1;
     $fimDijkstra = (int)readline("Digite o nó de fim para Dijkstra (1 a $numeroNos): ") - 1;
 
-    echo "\nExecutando o Algoritmo de Dijkstra:\n";
+    echo "\nDijkstra:\n";
     $grafo->dijkstra($inicioDijkstra, $fimDijkstra);
 
     // Coletar dados para A*
-    $inicioAEstrela = (int)readline("Digite o nó de início para A* (1 a $numeroNos): ") - 1;
-    $fimAEstrela = (int)readline("Digite o nó de fim para A* (1 a $numeroNos): ") - 1;
+    $inicioAEstrela = (int)readline("nó de início para A* (1 a $numeroNos): ") - 1;
+    $fimAEstrela = (int)readline("nó de fim para A* (1 a $numeroNos): ") - 1;
 
     $coordenadas = [];
     echo "\nDigite as coordenadas dos nós:\n";
     for ($i = 0; $i < $numeroNos; $i++) {
-        $x = (float)readline("Coordenada x do nó " . ($i + 1) . ": ");
-        $y = (float)readline("Coordenada y do nó " . ($i + 1) . ": ");
+        $x = (float)readline("x do nó " . ($i + 1) . ": ");
+        $y = (float)readline("y do nó " . ($i + 1) . ": ");
         $coordenadas[$i] = [$x, $y];
     }
 
-    echo "\nExecutando o Algoritmo A*:\n";
+    echo "\nAlgoritmo A*:\n";
     $grafo->aEstrela($inicioAEstrela, $fimAEstrela, $coordenadas);
 }
 
